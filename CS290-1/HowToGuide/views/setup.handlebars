@@ -1,0 +1,45 @@
+<h2>Initial Setup</h2>
+<p>Getting an account started could not be easier. To get started with Google Analytics you need to first create an account. Visit <a href="google.com/analytics">google.com/analytics</a>, and click the Sign in to Google Analytics button (top right)</p>
+<p>
+	<ol>
+		<li>Click the sign-up button</li>
+		<li>Click to track a mobile app or website
+			<div class = "well-lg">
+				<img src="/images/trackType.png" alt="select type">
+			</div>
+		</li>
+		<li>Fill in the appropriate information for your site (I'm setting up my personal training web page)
+			<div class = "well-lg">
+				<img src="/images/setUp.png" alt="set up">
+			</div>
+		</li>
+		<li>Get your Personalized Tracking ID
+			<div class = "well-lg">
+				<img src="/images/trackId.png" alt="tracking">
+			</div>
+		</li>
+		<li>This will take you to your admin page where you have the tracking ID and the code you need to get your page started, along with a dashboard where you can modify your settings. The following bit of code (the UA-XXXX section will be your tracking code) should be added to your site to turn on the Universal Analytics.
+		<pre>
+			<code>
+  &ltscript&gt
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-XXXXXX-1', 'auto');
+    ga('send', 'pageview');
+  &ltscript&gt					
+		</code>
+	</pre>
+		</li>
+		<li>To get an explanation of the code check out the documentation: <a href="https://developers.google.com/analytics/devguides/collection/analyticsjs/"> analytics.js</a></li>
+		<li>Set the Session settings (per visit) and the Campaign settings (to track over the course of a certain marketing push or campaign) to something appropriate for your business.
+		<div class="Well-lg">
+			<img src="/images/sessions.png" alt="session_settings">
+		</div>
+		</li>
+		<li>Finally, after adding the script and modifying the session settings you can start modifying the tracking info and customize the tracking as you and your business sees fit. You can also use this page to link your site to certain ad agencies to generate revenue from your site.</li>
+	</ol>
+</p>
+<h3><a href="/node">Linking to the Google API</a></h3>

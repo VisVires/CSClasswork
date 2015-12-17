@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>WEEK 2 ASSIGNMENT</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!--6x6 Table with Header and Footer-->
+<table>
+	<caption>MONSTERS VS ALIENS</caption>
+	<thead>
+		<tr>
+			<th></th>
+			<th>GODZILLA</th>
+			<th>THE KRAKEN</th>
+			<th>KING KONG</th>
+			<th>FRANKENSTEIN</th>
+			<th>THE GREAT WHITE</th>
+		</tr>
+	</thead>
+	<tbody class="tableBody">
+		<tr>
+			<td class="col1">PREDATOR</td>
+			<td>GODZILLA</td>
+			<td>THE KRACKEN</td>
+			<td>PREDATOR</td>
+			<td>PREDATOR</td>
+			<td>PREDATOR</td>
+		</tr>
+		<tr>
+			<td class="col1">YODA</td>
+			<td>YODA</td>
+			<td>YODA</td>
+			<td>YODA</td>
+			<td>FRANKENSTEIN</td>
+			<td>YODA</td>
+		</tr>
+		<tr>
+			<td class="col1">E.T.</td>
+			<td>GODZILLA</td>
+			<td>E.T.</td>
+			<td>KING KONG</td>
+			<td>FRANKENSTEIN</td>
+			<td>THE GREAT WHITE</td>
+		</tr>
+		<tr>
+			<td class="col1">WAR OF THE WORLDS</td>
+			<td>GODZILLA</td>
+			<td>THE KRAKEN</td>
+			<td>WAR OF THE WORLDS</td>
+			<td>WAR OF THE WORLDS</td>
+			<td>THE GREAT WHITE</td>
+		</tr>
+		<tr>
+			<td class="col1">HOWARD THE DUCK</td>
+			<td>GODZILLA</td>
+			<td>HOWARD THE DUCK</td>
+			<td>KING KONG</td>
+			<td>HOWARD THE DUCK</td>
+			<td>THE GREAT WHITE</td>
+		</tr>
+	</tbody>
+	<tfoot>
+		<tr>
+			<td colspan="2">footer 1</td>
+			<td colspan="4">footer 2</td>
+		</tr>
+	</tfoot>
+</table>
+
+<!--Defintiion List-->
+<dl>
+	<dt>OBJECT ORIENTED</dt>
+		<dd>C++</dd>
+	<dt>FUCTIONAL</dt>
+		<dd>HASKELL</dd>
+	<dt>MARKUP</dt>
+		<dd>HTML</dd>
+</dl>
+
+<!--Outer DIV-->
+<div class="outer-content">
+	<!--Inner DIV-->
+	<div class="inner-content">
+		<p>This is a box in a box</p>
+	</div>
+</div>
+
+<!--Form that sends PUT request-->
+<form action="http://classes.engr.oregonstate.edu/eecs/winter2015/cs290-400/tools/class-content/form_tests/check_request.php" method="post" id="putForm">
+	
+	<fieldset class="textInput">
+		<legend>SOME PUT DATA</legend>
+		<label> Text Input <input type="text" name="text_input" value=""></label><br>
+		<label> Number <input type="numerical" name="numerical_input" value=""></label><br>
+		<label> Password <input type="password" name="password_input" value=""></label><br>
+	</fieldset>
+
+	<fieldset class="radios">
+		<legend>SELECT ONE</legend>
+		<input type="radio" name="candy" value="Snickers"><label> Snickers </label><br>
+		<input type="radio" name="candy" value="Skittles"><label> Skittles </label><br>
+		<input type="radio" name="candy" value="Mentos"><label> Mentos </label><br>	
+	</fieldset>
+	<input class="btn" type="submit" value="submit">
+</form>
+
+<!--Form that sends GET request-->
+<form action="http://classes.engr.oregonstate.edu/eecs/winter2015/cs290-400/tools/class-content/form_tests/check_request.php" method="get" id="getForm">
+	
+	<fieldset class="textInput">
+		<legend>SOME GET DATA</legend>
+		<label> Text Input <input type="text" name="text_input" value=""></label><br>
+		<label> Number <input type="numerical" name="numerical_input" value=""></label><br>
+		<label> Password <input type="password" name="password_input" value=""></label><br>
+	</fieldset>
+
+	<fieldset class="radios">
+		<legend>SELECT ONE</legend>
+		<input type="radio" name="candy" value="Snickers"><label> Snickers </label><br>
+		<input type="radio" name="candy" value="Skittles"><label> Skittles </label><br>
+		<input type="radio" name="candy" value="Mentos"><label> Mentos </label><br>
+	</fieldset>
+		<input class="btn" type="submit" value="submit">
+</form>
+
+</body>
+</html>

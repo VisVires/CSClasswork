@@ -1,0 +1,113 @@
+<h2>The Universal Analytics Node Module</h2>
+<h3>What is Universal Analytics?</h3>
+<p>Universal Analytics is a set of features that can change how data is collected from you site, using the Tracking ID you can get a better idea of what your users are doing when they are visiting your site on multiple platforms. Using the node module you can perform all of these services on the Server Side, which will dramtically increase performance and customizability.</p>
+<h3>Benefits of Server Side Analytics</h3>
+<p>By using the node module for analytics you can perform all of the analytics on the server side, meaning you have a lot more control of what you're tracking, and what you're sharing.</p>
+<ul>
+	<li>No impact on page loading or performance</li>
+	<li>You have control over what is shared with Google</li>
+	<li>You can use it with non JavaScript devices (like mobile)</li>
+	<li>You can track information coming from a variety of sources</li>
+</ul>
+<br>
+<h2>How to use Universal Analytics with Node</h2>
+<p>You can use Universal Analytics like any other node module</p>
+<pre>
+<code>
+var ua = require('universal-analytics');
+</code>	
+</pre>
+<p>Remember the Tracking ID we got when we first signed up? You're going to use that to initialize the module</p>
+<pre>
+<code>var visitor = ua('UA-708XXXX-XX')</code>
+</pre>
+<p>This ID can be used to track a specific user, you can also force a custom user ID by using the UUID v4 format</p>
+<pre>
+<code>var visitor = ua('UA-708XXXX-XX', 'CUSTOM_USER', {strictCidFormat: false}')</code>
+</pre>
+<h3>Tracking Page Views for Specific Pages</h3>
+<p>To track page views you need to use the pageview parameter for the visitor object.</p> 
+<p>You can also use the page path and location, and set a callback or use <code>.send();</code>. The page path must be included for view tracking to work.</p>
+<pre>
+<code>
+visitor.pageview("/","home", function (err){
+	if (!err)
+		console.log('success!');
+});
+</code>	
+</pre>
+<h3>Tracking Events</h3>
+<p>Have you ever wondered how often users click a specific link, or press a button? Using event tracking you can get an exact count. To track an event you would add the following code for the event (in the format visitor.event(category, action)):</p>
+<pre>
+<code>
+visitor.event("submit", "click").send();
+</code>	
+</pre>
+<p> You can also daisy chain the page view and event to minimize code and get the event associated with a specific page.
+<pre>
+<code>
+visitor.pageview("/").event("submit", "click").send();
+</code>	
+</pre>
+<h3>Track E-Commerce Events</h3>
+<p>Similar to the previous examples you can use a transaction ID to track transaction events including the initialization of a transaction, the adding of items to the transaction and finally the completed transactions. This can give you clues as to what users are looking at and can give you information or recommendations for a specific user.</p> Code to track a transaction needs a transaction ID and can be made by calling <code>visitor.transaction("id").send();</code>
+You can also include other parameters including shipping, tax, and revenue. You can daisy-chain a transaction request with an item replacing <code>.send();</code> with <code>.item(price).send();</code> and adding other parameters such as quantity, sku, name and variation.</p>
+<h3>Other Items You Can Track with UA</h3>
+<h4>Timing Tracking</h4>
+<p>Universal Analytics can be used to track the time it takes for certain event to occur such as a page resource loading, or the loading of a particular library.</p>
+<h4>Session Based Identification</h4>
+<p>Using this module, along with some universal analytics middleware, you can use the _ga cookie created by the client side tracking in the analytics.js file on the first page of this guide. It will store the detected client ID to identify the visitor later.</p>
+<pre>
+<code>
+var ua = require("universal-analytics");
+var express = require("express");
+ 
+var app = express()
+ 
+app.use(ua.middleware("UA-XXXXX-Y", {cookieName: '_ga'}));
+</code>	
+</pre>
+<h3>Example Node Call for a Project</h3>
+<p>This code will track the views for the home page of this site and the page talking about the core api. The debug function outputs information during the tracking. I've placed my Tracking ID in a JSON file stored in the node_modules directory under universalAnalytics.json</p>
+<pre>
+<code>
+var ua = require('universal-analytics');
+var uaKey = require('universalAnalytics.json');
+app.use(ua.middleware(uaKey.tid));
+
+var vistor = ua(uaKey.tid,{https:true}).debug();
+
+vistor.pageview("/","https://52.33.123.15:3000").pageview("/core", "https://52.33.123.15:3000", function(err){
+    if(!err){
+        console.log(arguments);
+    }
+});
+</code>	
+</pre>
+<p>The response when called is:</p>
+<pre>
+<code>[universal-analytics] Logging enabled
+[universal-analytics] Enqueued pageview ({"dp":"/","dh":"https://52.33.123.15:3000","v":"1","tid":"UA-70981627-1","cid":"84e0ce8b-228c-4bde-b820-a760af7cfc08","t":"pageview"})
+[universal-analytics] Enqueued pageview ({"dp":"/core","dh":"https://52.33.123.15:3000","v":"1","tid":"UA-70981627-1","cid":"84e0ce8b-228c-4bde-b820-a760af7cfc08","t":"pageview"})
+[universal-analytics] Sending 2 tracking call(s)
+[universal-analytics] 1: {"dp":"/","dh":"https://52.33.123.15:3000","v":"1","tid":"UA-70981627-1","cid":"84e0ce8b-228c-4bde-b820-a760af7cfc08","t":"pageview"}
+Express started on http://localhost:3000; press Ctrl-C to terminate.
+[universal-analytics] 2: {"dp":"/core","dh":"https://52.33.123.15:3000","v":"1","tid":"UA-70981627-1","cid":"84e0ce8b-228c-4bde-b820-a760af7cfc08","t":"pageview"}
+[universal-analytics] Finished sending tracking calls
+{ '0': null, '1': 2 }</code>	
+</pre>
+<p>The data here represents information about the user and the call. The first two actions are to que the pages pageview tracking. Next the tracking calls are sent. Finally after express starts the tracking calls for each page is sent. The parameters sent are:
+<ol>
+	<li>dp: document path</li>
+	<li>dh: document host</li>
+	<li>v: protocol version</li>
+	<li>tid: tracking ID</li>
+	<li>cid: client ID</li>
+	<li>t: hit type</li>
+</ol>
+</p>
+<p>If set-up properly you can see your site in action by visiting your dashboard. If you're tracking real-time your dashboard may look something like this: </p>
+<div class="well-lg">
+	<img src="/images/dashboard.png" alt="dashboard">
+</div>
+<h3>And that's it! You're all set to do server side analytics with Google's Universal Analytics Service!</h3>

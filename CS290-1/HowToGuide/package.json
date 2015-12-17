@@ -1,0 +1,48 @@
+{
+  "name": "HowToGuide",
+  "description": "The best project ever.",
+  "version": "0.1.0",
+  "homepage": "https://github.com/VisVires/CS290/HowToGuide",
+  "author": {
+    "name": "William George",
+    "email": "georgew@oregonstate.edu"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/VisVires/CS290/HowToGuide.git"
+  },
+  "bugs": {
+    "url": "https://github.com/VisVires/CS290/HowToGuide/issues"
+  },
+  "licenses": [
+    {
+      "type": "n",
+      "url": "https://github.com/VisVires/CS290/HowToGuide/blob/master/LICENSE-n"
+    }
+  ],
+  "main": "lib/HowToGuid",
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "scripts": {
+    "test": "grunt nodeunit"
+  },
+  "devDependencies": {
+    "grunt-contrib-jshint": "~0.6.4",
+    "grunt-contrib-nodeunit": "~0.2.0",
+    "grunt-contrib-watch": "~0.5.3",
+    "body-parser": "^1.14.1",
+    "express": "^4.13.3",
+    "express-handlebars": "^2.0.1",
+    "express-session": "^1.12.1",
+    "mysql": "^2.9.0",
+    "request": "^2.67.0",
+    "grunt": "~0.4.5"
+  },
+  "keywords": [],
+  "dependencies": {
+    "forever": "^0.15.1",
+    "googleapis": "^2.1.6",
+    "universal-analytics": "^0.3.9"
+  }
+}

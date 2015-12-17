@@ -1,0 +1,29 @@
+<div class="table-responsive">
+	<table class="table table-striped table-hover">
+    <caption>Edit Workout</caption>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Repetitions</th>
+            <th>Weights</th>
+            <th>Date</th>
+            <th>LBS</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each edit}}
+        <tr>
+            <form method="get" action="/simpleUpdate">
+                <input type="hidden" name="id" value="{{this.id}}">
+                <td><input id="name" type="text" class="form-control" name="name" value="{{this.name}}"></td>
+                <td><input id="reps" type="number" class="form-control" name="reps" value="{{this.reps}}"></td>
+                <td><input id="weight" type="number" class="form-control" name="weight" value="{{this.weight}}"></td>
+                <td><input id="date" type="date" name="date" class="form-control" value="{{this.date}}"></td>
+                <td><input id="Lbs?" type="number" name="lbs" class="form-control" value="{{this.lbs}}"></td>
+                <td><input type="Submit" class="btn btn-info" value="Update"></td>
+            </form>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+</div>

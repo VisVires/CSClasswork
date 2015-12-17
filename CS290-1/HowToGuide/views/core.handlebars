@@ -1,0 +1,182 @@
+<h2>Google Analytics Core Reporting API</h2>
+<h4>Install the module</h4>
+<pre>
+<code>
+	npm install googleapis --save;
+</code>	
+</pre>
+<h4>Create the service client</h4>
+<pre>
+<code>
+	var google = require('googleapis');
+	var key = require('PUT JSON FILE NAME HERE.json');
+	const VIEW_ID = 'ga:PUT VIEW ID HERE';
+</code>
+</pre>
+<h4>Make an Authenticated Request using JWT</h4>
+<p>JWT Authentication is a means of authenticating a request using JSON Web Tokens. The line <code>var analytics = google.analytics('v3');</code> calls the appropriate API.</p>
+<pre>
+<code>
+var jwtClient = new google.auth.JWT(key.client_email, null, key.private_key, ['https://www.googleapis.com/auth/analytics.readonly'], null);
+    jwtClient.authorize(function (err, tokens) {
+      if (err) {
+        console.log(err);
+        return;
+      }
+      var analytics = google.analytics('v3');
+      queryData(analytics);
+});	
+</code>	
+</pre>
+<h3>Finally you can make a query using the keys in the object handed to analytics.data.ga.get()</h3>
+<p>To understand what each query does check out the <a href="https://developers.google.com/analytics/devguides/reporting/core/v3/reference#q_summary" title="listOfQueries">Reference Guide for Query Parameters</a></p><br>
+<pre>
+<code>
+function queryData(analytics) {
+      analytics.data.ga.get({
+        'auth': jwtClient,
+        'ids': VIEW_ID,
+        'metrics': 'ga:pageViews, ga:newUsers', 
+        'dimensions': 'ga:country, ga:cityId',
+        'start-date': '30daysAgo',
+        'end-date': 'yesterday',
+        'sort': '-ga:country',
+        'max-results': 10,
+        'filters': 'ga:pagePath=~/ch_[-a-z0-9]+[.]html$',
+      }, function (err, response) {
+        if (err) {
+          console.log(err);
+          return;
+        }
+        console.log(JSON.stringify(response, null, 4));
+      });  
+    }
+</code>	
+</pre>
+<p>This query checks the top 10 cities and countries for page views and new users in the last 30 days, using the metrics and dimensions inputs. The dimension and metric queries are the most important for the response as they define what you're measuring. You can query with up to 7 dimensions at a time and 10 metrics. You can also for many things like ga:uniquepageviews with ga:country (to get the number of unique page views per country) and many other parameters. Some dimensions and metrics cannot be paired however, a list can be found <a href="https://developers.google.com/analytics/devguides/reporting/core/dimsmets">here</a> You can then sort the data by the values you used in either the dimensions or metrics parameters. You can also use the filter parameter to apply filters to the data, so we could filter the country data by browsers starting with the string Firefox by including<code>filters='ga:browser%3D~%5EFirefox'</code></p>
+<h3>The Response</h3>
+<p>This response from this query is a copy of all the profile info along with an array of column headers representing the metrics and dimensions requested. In this case the response is:</p>
+<pre>
+<code>
+{
+    "kind": "analytics#gaData",
+    "id": "https://www.googleapis.com/analytics/v3/data/ga?ids=ga:112638844&dimensions=ga:country,+ga:cityId&metrics=ga:pageViews,ga:newUsers&sort=-ga:country&filters=ga:pagePath%3D~/ch_%5B-a-z
+0-9%5D%2B%5B.%5Dhtml$&start-date=30daysAgo&end-date=yesterday&max-results=10",
+    "query": {
+        "start-date": "30daysAgo",
+        "end-date": "yesterday",
+        "ids": "ga:123456",
+        "dimensions": "ga:country, ga:cityId",
+        "metrics": [
+            "ga:pageViews",
+            "ga:newUsers"
+        ],
+        "sort": [
+            "-ga:country"
+        ],
+        "filters": "ga:pagePath=~/ch_[-a-z0-9]+[.]html$",
+        "start-index": 1,
+        "max-results": 10
+    },
+    "itemsPerPage": 10,
+    "totalResults": 0,
+    "selfLink": "https://www.googleapis.com/analytics/v3/data/ga?ids=ga:112638844&dimensions=ga:country,+ga:cityId&metrics=ga:pageViews,ga:newUsers&sort=-ga:country&filters=ga:pagePath%3D~/ch_%
+5B-a-z0-9%5D%2B%5B.%5Dhtml$&start-date=30daysAgo&end-date=yesterday&max-results=10",
+    "profileInfo": {
+        "profileId": "12345678",
+        "accountId": "87654321",
+        "webPropertyId": "UA-708XXXX-1",
+        "internalWebPropertyId": "123456789",
+        "profileName": "All Web Site Data",
+        "tableId": "ga:87654321"
+    },
+    "containsSampledData": false,
+    "columnHeaders": [
+        {
+            "name": "ga:country",
+            "columnType": "DIMENSION",
+            "dataType": "STRING"
+        },
+        {
+            "name": "ga:cityId",
+            "columnType": "DIMENSION",
+            "dataType": "STRING"
+        },
+        {
+            "name": "ga:pageViews",
+            "columnType": "METRIC",
+            "dataType": "INTEGER"
+        },
+        {
+            "name": "ga:newUsers",
+            "columnType": "METRIC",
+            "dataType": "INTEGER"
+        }
+    ],
+    "totalsForAllResults": {
+        "ga:pageViews": "0",
+        "ga:newUsers": "0"
+    }
+}
+</code>	
+</pre>
+<p>If there are results, this will return table info that you can place in a report. The information at the top is the query sent to inform the API which user is making the request. The rest, starting with column headers is what you want.<br>
+You can customize the result based on the specific items you're looking for whether it be to test the effectiveness of an ad campaign (by changing the start and end date) or to see the amount of unique visitors from a specific location (by manipulating the country and unique page views).
+</p>
+<h3>Organizing your Results</h3>
+<p>To get the data back with the information needed for a table you just need to combine the previous calls to construct the following get request</p>
+<pre>
+<code>
+var jwtClient = new google.auth.JWT(key.client_email, null, key.private_key, ['https://www.googleapis.com/auth/analytics.readonly'], null);
+app.get('/results', function (req, res, next) {  
+    jwtClient.authorize(function (err, tokens) {
+        var context = {};
+        if (err) {
+          next(err);
+          return;
+        }
+        var analytics = google.analytics('v3');
+        analytics.data.ga.get({
+            'auth': jwtClient,
+            'ids': VIEW_ID,
+            'metrics': 'ga:pageViews, ga:newUsers', 
+            'dimensions': 'ga:country, ga:cityId',
+            'start-date': '30daysAgo',
+            'end-date': 'yesterday',
+            'sort': '-ga:country',
+            'max-results': 10,
+            'filters': 'ga:pagePath=~/ch_[-a-z0-9]+[.]html$',
+        }, function (err, response) {
+              if (err) {
+              next(err);
+              return;
+            }            
+            context.columnHeaders = response.columnHeaders;
+            res.render('results', context);
+      });
+  });
+});</code>  
+</pre>
+<br>
+<p>As you can see the response is just in JSON, but by adding the parameter <code>'dataTable': 'true'</code> to the original query will allow you to get a complete datatable that is usable with google charts. The JSON reponse above will just return the column headers, but If you have additional data you can ask for that as well. Here is an example of the response using handlebars:
+<table class="table">
+  <caption>Query Results</caption>
+  <thead>
+    <tr>
+      {{#columnHeaders}}
+        <th>{{this.name}}</th>
+      {{/columnHeaders}}
+    </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+<h3>Limits and Quotas</h3>
+<p>
+Quota Limits are shared between platforms You can have up to:
+<ul>
+  <li>10,000 requests per view per day</li>
+  <li>10 concurrent queries per view</li>
+</ul>
+</p>
+<h3><a href="/universal">Universal Analytics Node Module</a></h3>

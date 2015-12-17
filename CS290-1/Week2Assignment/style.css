@@ -1,0 +1,96 @@
+/*Table Attributes*/
+table, tr, td, th{
+	border:  1px solid black;
+	text-align: center;
+	vertical-align: top;
+	padding: 0px 0px 0px 0px;
+}
+
+
+/*Set odd children to green*/
+ tbody.tableBody>tr:nth-of-type(odd){
+	background-color: green;
+}
+
+/*Set odd children to aqua*/
+tbody.tableBody>tr:nth-of-type(even){
+	background-color: aqua;
+}
+
+/*set 1st col to italic*/
+td.col1{
+	font-style: italic; 
+}
+
+/*set position and color of outer div*/
+.outer-content{
+	margin-top: 20px;
+	margin-bottom: 20px;
+	margin-left: 0px;
+	position: relative;
+	height: 10em;
+	background-color: pink;
+	width: 75%;
+}
+
+/*set position and color of inner div*/
+.inner-content{
+	margin: auto;
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	width: 75%;
+	height: 5em;
+	background-color: blue;
+	text-align: center;
+}
+
+/*set text color in inner div*/
+.inner-content p{
+	color: white;
+}
+
+/*set basic form border and round corners*/
+form{
+	margin-top: 20px; 
+	border: 1px solid black;
+	border-radius: 5px;
+	width: 50%; 
+	background-color: yellow;
+}
+
+/*set individual fieldset attributes*/
+fieldset{
+	border: 0;
+	margin: 20px;
+	padding: 0px;
+	position: relative;
+}
+
+/*set textInput class fieldset width and border text areas*/
+.textInput input{
+	width: 200px;
+	border: 1px solid;
+	height: 25px;
+	margin-top: 5px;
+}
+
+/*Change level the labels are on so they're not inline*/
+.textInput label{
+	display: inline-block;
+	width: 200px;
+}
+
+/*set radio button field set attributes*/
+.radios{
+	width: auto;
+	vertical-align: left;
+}
+
+/*widen submit button*/
+.btn{
+	width: 200px;
+	margin: 20px; 
+}
