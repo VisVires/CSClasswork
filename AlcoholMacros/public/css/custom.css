@@ -1,0 +1,119 @@
+/* Move down content because we have a fixed navbar that is 50px tall */
+body {
+  padding-top: 0px;
+  font-size: 100%; 
+  font-family: 'Lucida Grande', Verdana, Arial, Sans-Serif;
+}  
+
+header {
+	height:215px;
+}
+
+.checkbox-inline{
+	margin: 0 0 0 0;
+}
+
+.btn-info {
+	background: #0f444f;
+	width: 180px;
+	margin-top: 5px;
+}
+
+.form-control, label{
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+legend {
+	margin-bottom: 10px;
+}
+
+.modalDialog{
+	position: fixed;
+	overflow: scroll;
+	font-family: Arial, Helvetica, sans-serif;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background: rgba(0,0,0,0.8);
+	z-index: 99999;
+	opacity: 0;
+	-webkit-transition: opacity 400ms ease-in;
+	-mod-transition: opacity 400ms ease-in;
+	transition: opacity 400ms ease-in;
+	pointer-events: none;
+}
+
+
+.modalDialog p{
+	margin-top: 10px;
+	font-size: 18px;
+	text-align: justify;
+} 
+
+.modalDialog:target{
+	opacity: 1;
+	pointer-events: auto;
+}
+/*modal window styling*/
+.modalDialog > div {
+	width: 700px;
+	position:relative;
+	margin: 10% auto;
+	padding: 5px 20px 13px 20px;
+	border-radius: 10px
+	background: #fff;
+	background: -moz-linear-gradient(#fff, #999);
+	background: -webkit-linear-gradient(#fff, #999);
+	background: -o-linear-gradient(#fff, #999);
+}
+.close{
+	background: #0f444f;
+	color: white
+	line-height: 25px;
+	position: absolute;
+	right: 0px;
+	text-align: center;
+	top: 0px;
+	width: 24px;
+	text-decoration: none;
+	font-weight: bold;
+	-webkit-border-radius: 12px;
+	-moz-border-radius: 12px;
+	-border-radius: 12px
+	-moz-box-shadow: 1px 1px 3px #000;
+	-webkit-box-shadow: 1px 1px 3px #000;
+	box-shadow: 1px 1px 3px #000;
+}
+.close:hover{background: #0f444f;}
+
+/*Responsive Styling*/
+/*Medium*/
+@media (max-width: 1200px) {
+  
+}
+/*Small*/
+@media (max-width: 991px) {
+  
+  .modalDialog > div {
+  	width: 80%; 	
+  }
+
+  .modalDialog p{
+  	font-size: 12px;
+  }
+
+}
+/*Extra Small*/
+@media (max-width: 767px) {
+  
+  .btn-lg {
+    font-size: 18px;
+  }
+  .modalDialog p{
+  	font-size: 12px;
+  }
+}
+
+

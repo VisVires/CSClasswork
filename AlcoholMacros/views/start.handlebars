@@ -1,0 +1,89 @@
+<div class="row">
+		<div class="col-sm-3"></div>
+		<div class="col-sm-6">
+		<div class="form-group">	
+			<form role="form">
+				<fieldset id="startField">
+						<legend>WHAT DID I DRINK?</legend>
+						<div class="row">
+							<div class="col-sm-6">
+								<input type="text" class="form-control" name="findDrink" value="" placeholder="Drink">
+							</div>
+							<div class="col-sm-6">
+								<input type="submit" name="searchDrink" class="btn btn-info" value="Search Drinks">
+								<a href="/addItem"><input type="button" name="addToList" id="addButton" class="btn btn-info" value="Add Drink"></a>
+							</div>
+						</div>
+				</fieldset>
+			</form>
+			<div class="row">
+				<div class="col-sm-6">
+				<label for="servings">How many servings?</label> 
+					<select class="form-control" name="servings">
+						<option value="">One</option>
+						<option value="">Two</option>
+						<option value="">Three</option>
+						<option value="">Four</option>
+						<option value="">Five</option>
+						<option value="">Six</option>
+						<option value="">Seven</option>
+						<option value="">Eight</option>
+						<option value="">Nine</option>
+						<option value="">Ten</option>
+					</select>
+				</div>
+				<div class="col-sm-6">
+				<label for="glass">What type of glass?</label>
+					<select class="form-control" name="glass">
+					</select>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-sm-3"></div>
+</div>
+<div class="row">
+	<div class="col-sm-3"></div>
+	<div class="col-sm-6">
+		<div class="table-responsive">
+			<table class="table table-striped table-hover">
+				<caption>Your Macros</caption>
+				<thead>
+					<tr>
+						<th></th>
+						<th>Drink</th>
+						<th>Calories</th>
+						<th>Alcohol</th>
+						<th>Carbs</th>
+						<th>Protein</th>
+						<th>Fat</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td></td>
+						<td>{{brand}}{{drink}}</td>
+						<td>{{calories}}kCal</td>
+						<td>{{alcohol}}g</td>
+						<td>{{carbs}}g</td>
+						<td>{{protein}}g</td>
+						<td>{{fat}}g</td>
+					</tr>
+				</tbody>
+				<tfoot>
+					<tr>
+						<td>Total</td>
+						<td></td>
+						<td>{{calories}}kCal</td>
+						<td>{{alcohol}}g</td>
+						<td>{{carbs}}g</td>
+						<td>{{protein}}g</td>
+						<td>{{fat}}g</td>
+					</tr>
+				</tfoot>
+			</table>
+		</div>
+	</div>
+	<div class="col-sm-3"></div>
+</div>
+	

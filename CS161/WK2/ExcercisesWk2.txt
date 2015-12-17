@@ -1,0 +1,122 @@
+Excercises Components:
+
+1. (2) Convert (feel free to just use paper, though I use a text editor for this sometimes) the following numbers 
+from decimal to binary:
+(Note: You will turn this in as a part of your assignment report)
+a. 3
+	3 = 2+1 = 2^1 + 2^0 = 000011
+	
+b. 7
+	7 = 4 + 2 + 1 = 2^2 + 2^1 + 2^0 = 000111
+	
+c. 10
+	10 = 8 + 2 = 2^3 + 0 + 2^1 + 0 = 001010
+	
+d. 50
+	50 = 32 + 16 + 2 = 2^5 + 2^4 + 0 + 0 + 2^1 + 0 = 110010
+
+e. 94
+	94 = 64 + 16 + 8 + 4 + 2 = 2^6 + 0 + 2^4 + 2^3 + 2^2 + 2^1 + 0 = 01011110
+
+f. 192
+	192 = 128 + 64 = 2^7 + 2^6 + 0 + 0 + 0 + 0 + 0 + 0 = 11000000
+
+2. (2) Convert the following numbers from binary to decimal:
+(Note: You will turn this in as a part of your assignment report)
+a. 10
+	10 = 2 ^ 1 + 0 = 2 
+
+b. 1110
+	1110 = 2^3 + 2^2 + 2^1 + 0 = 14	
+
+c. 111010
+	111010 = 2^5 + 2^4 + 2^3 + 0 + 2^1 + 0 = 32 + 16 + 8 + 0 + 2 = 58
+
+d. 11100011
+	11100011 = 2^0 + 2^1 + 0 + 0 + 0 + 2^5 + 2^6 + 2^7 = 1 + 2 + 0 + 0 + 0 + 32 + 64 + 128 = 227
+
+
+3. (2) Convert each of the decimal numbers from problem 1 above into two's compliment representation 
+numbers with the minimum number of bits possible. This should not be difficult, and is more to get you 
+thinking about the sign bit than about the rest of the number (which behaves very much like binary).
+Note: This is meant to be a simple exercise in seeing how that positive numbers in two's complement are 
+similar to plain binary numbers and that different numbers require different numbers of bits to represent.
+
+a. 3
+	3 = 2+1 = 2^1 + 2^0 = 000011
+	011	
+b. 7
+	7 = 4 + 2 + 1 = 2^2 + 2^1 + 2^0 = 000111
+	0111
+c. 10
+	10 = 8 + 2 = 2^3 + 0 + 2^1 + 0 = 001010
+	01010
+d. 50
+	50 = 32 + 16 + 2 = 2^5 + 2^4 + 0 + 0 + 2^1 + 0 = 110010
+	0110010
+e. 94
+	94 = 64 + 16 + 8 + 4 + 2 = 2^6 + 0 + 2^4 + 2^3 + 2^2 + 2^1 + 0 = 01011110
+	01011110
+f. 192
+	192 = 128 + 64 = 2^7 + 2^6 + 0 + 0 + 0 + 0 + 0 + 0 = 11000000
+	011000000
+
+4. (2) Now convert them each into an 8-bit two's compliment representation, but have each one be negative 
+what it originally was (so write -3 in 8-bit two's complement, -7, -10, -50, or whatever the numbers were in 
+problem 1 but now negative, written out in two's complement).
+(Note: You will turn this in as a part of your assignment report)
+Note: This is meant to show that if we have a set number of bits, that we can only represent so many 
+numbers and that some do not fit well into these constraints. This should also show that negative two's 
+complement numbers sometimes require a bit of work to get what you want (there are some tricks to finding 
+the mathematical opposite of a number in two's complement).
+Discussion ideas on Discussion Board: what are some tricks to help you convert numbers into two's 
+compliment?
+
+a. -3
+	3 = 2+1 = 2^1 + 2^0 = 000011
+	011 
+	100 + 1 = 101	
+b. -7
+	7 = 4 + 2 + 1 = 2^2 + 2^1 + 2^0 = 000111
+	0111
+	1000 + 1 = 1001
+c. -10
+	10 = 8 + 2 = 2^3 + 0 + 2^1 + 0 = 001010
+	01010
+	10101 + 1 = 10110
+d. -50
+	50 = 32 + 16 + 2 = 2^5 + 2^4 + 0 + 0 + 2^1 + 0 = 110010
+	0110010
+	1001101 + 1 = 1001110
+e. -94
+	94 = 64 + 16 + 8 + 4 + 2 = 2^6 + 0 + 2^4 + 2^3 + 2^2 + 2^1 + 0 = 01011110
+	01011110
+	10100001 + 1 = 10100010
+f. -192
+	192 = 128 + 64 = 2^7 + 2^6 + 0 + 0 + 0 + 0 + 0 + 0 = 11000000
+	011000000
+	100111111 + 1 = 101000000
+
+
+5. (2) What happens if you add two very large positive 8-bit two's complement numbers together (say 01100110
+and 01011100)?
+(Note: You will turn this in as a part of your assignment report)
+Note: to start with you may find it easier to convert to decimal, do the addition, and then convert back
+Discussion ideas on Discussion Board: what happens here and why could this be a problem in a real 
+computing situation? Can we detect this?
+(hint: look up the concept of overflow)
+  1111
+ 01100110 = 0 + 2^1 + 2^2 + 0 + 0 + 2^5 + 2^6 + 0 = 2 + 4 + 32 + 64 = 102
++01011100 = 0 + 0 + 2^2 + 2^3 + 2^4 + 0 + 2^6 + 0 = 4 + 8 + 16 + 64 = 92 
+ 11000010                                                             194 = 128 + 64 + 2 = 2^7 + 2^6 + 0 + 0 + 0 + 0 + 2^1 + 0 = 11000010
+
+6. (2) What happens if you add two very large negative 8-bit two's complement number together (say 10100001 
+and 10101010)?
+(Note: You will turn this in as a part of your assignment report)
+Note: remember that in a real computer, if we were stuck using 8-bit numbers, then we would not be able to store a 9th bit…
+
+ 10100001 = -1(2^0 + 0 + 0 + 0 + 0 + 2^5 + 0) = -1(1 + 64) = 		-65
++10101010 = -1( 0 + 2^1 + 0 + 2^3 + 0 + 2^5 + 0) = -1(2 + 8 + 64) = 	-74
+
+-65 + -74 = -(139) = -(128 + 8 + 2 + 1) = -(2^7 + 0 + 0 + 0 + 2^3 + 0 + 2^1 + 2^0) 
+= -(010001011) = 101110100 + 1 = 101110101

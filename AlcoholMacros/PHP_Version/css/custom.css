@@ -1,0 +1,74 @@
+/* Move down content because we have a fixed navbar that is 50px tall */
+body {
+  padding-top: 0px;
+  font-size: 100%; 
+  font-family: 'Lucida Grande', Verdana, Arial, Sans-Serif;
+} 
+
+h1, h2, h3, h4 {
+	text-align: center;
+} 
+
+datalist{
+	display: none;
+}
+
+header {
+	height:215px;
+}
+
+.checkbox-inline{
+	margin: 0 0 0 0;
+}
+
+.btn-info {
+	background: #0f444f;
+	width: 180px;
+	margin-top: 5px;
+	font-size: 14px;
+}
+
+.btn-xs {
+	width: 90px;
+  font-size: 10px;
+}
+
+.form-control, label{
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+legend {
+	margin-bottom: 10px;
+}
+
+
+/*Responsive Styling*/
+/*Medium*/
+@media (max-width: 1200px) {
+  .btn-info{
+  	width: 120px;
+  	font-size: 12px;
+  }
+}
+/*Small*/
+@media (max-width: 991px) {
+ 	.btn-info{
+  		width: 100px;
+  		font-size: 10px;
+  	} 
+  
+
+}
+/*Extra Small*/
+@media (max-width: 767px) {
+  	.btn-lg {
+    	font-size: 18px;
+  	}
+  	.btn-info{
+  		width: 180px;
+  		font-size: 14px;
+  	} 
+}
+
+
