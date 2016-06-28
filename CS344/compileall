@@ -1,0 +1,19 @@
+#!/bin/bash
+
+chmod +x p4gradingscript
+
+gcc -g -o otp_enc_d otp_enc_d.c
+gcc -g -o otp_enc otp_enc.c
+gcc -g -o otp_dec_d otp_dec_d.c
+gcc -g -o otp_dec otp_dec.c
+gcc -g -o keygen keygen.c
+
+#num=50501
+#num1=60601
+#for i in {0..0}
+#do
+#	num=$(($num + 6))
+#	num1=$(($num1 + 6))
+#	p4gradingscript $num1 $num > "mytestresults${i}" 2>&1
+#	sleep 2
+#done
